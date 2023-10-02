@@ -1,0 +1,87 @@
+#high oder component - takes params as a component and return component and adding feature
+function component - takes params props
+component - pieces of code that can be reuse
+#(react-router-dom)
+browser router - changing URL in browser
+routes  - doesn't render if component doesn't match and vice versa
+route - multiple routes takes two props component and path
+#NavLink and link is used for the linking the page without refreshing the pagelink 
+NavLink is used for highlighting the component(active-link) two props linking pages and  
+NavLink is best use for (header and footer)
+Link is best use for body 
+#if form value in component is controlled by state then it is called control component (useState)
+if form value in component is not controlled by state then it is called uncontrol component (useRef)
+#hooks is a build in function 
+tha have life cycle and state
+
+#state - holds information used to store data like variable
+
+usestate- return two array of an element (cannot use in class) that are
+curret value -default value
+function - it is used to update the current value
+
+#lifeCycle Method - (for fetching API )
+execute
+like(
+mount - component did mount(add to dom)
+update - component did update(updating states and props)
+unamount - component will unmount(when  aa component is removed from dom)
+)
+Hooks - useState useRef useEffect
+#useEffect hook react build hook - work as whole lifecycle method
+                                 - used for fetching API
+                                 - [] used for only rendering onetime
+#component are excuted before anything
+#Return/Clean UP - to remove unwanted rerendering
+                 -Used in API
+
+#pure component - useMemo hooks to stop rerendering unwantedstate 
+#const MoreAbout = () => {
+  const [showMore,setshowMore]= useState(false) // setshowMore changes the value of showMore
+  const Details = ()=>{
+    setshowMore(true);
+  }
+        {showMore ? <Further /> : "" }        // ? is for terminal operator : is for else "" is for empty
+#useMemo - return vanlues
+#useCallback - return function
+              - momized function
+               to enhance react app
+#useContext     - small context(project)
+props drilling -situation compo to compo data props use gari transfer garda aaune problem (parent to child)
+.state management - react ko sabai state lai manage
+#redux - for large project 
+       - j.s state management 
+       - provider who transfer data directly 
+       - npm i redux
+#axios - it automatic convert json format  // http method
+#cors - protecting the data while transfering the data from one browser to another domain
+#redux - is a state management
+it serves a centralized store to manage the all state of react application
+store subscribtion the component
+component can't write it can only read
+reducer helps to change/update the store 
+#react-redux only use for react application 
+       - to reduce unwanted boiler code/simplify the code
+       - useSelector  hooks to access the store  alls tate 
+       - useDispatch Hooks  use to trigger function/actionp
+       - provider it is a components use  pass data from all react application 
+  #Redux-toolkit - create slice :action ,state
+                - create Asyncthunk :two argument 1 action : string 2 async 
+                - configureStore : It makes store in react application
+                -  it use immer library
+redux uses thunks to handel async operation - like redux saga , Asyncthumk
+#promises - pending
+          - fulfilled
+          - rejected
+# react state cannot be changed directly
+#to featchiing AIP use extra reducer
+to directly tigger action reducer
+#useParams to check id
+product . productImsg url
+to get data from form we need to use event handel like onclick onchange
+#interception function in react (axios)
+#multipart to send the image and data sends binary data
+component 
+api backed copy the path
+API front end  paste the path
+authslice

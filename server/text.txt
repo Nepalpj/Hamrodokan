@@ -1,0 +1,133 @@
+argentina won match by 2 goal
+// const a = {
+//     average:(a,b)=>{
+//         console.log((a+b)/2)
+//     },
+//     percent:(a,b)=>{
+//         console.log((a/b)*100);
+//     },
+// };
+
+// module.exports = a;
+
+
+
+// const fs = require("fs");
+
+// const result = fs.readFileSync("./text.txt","utf-8") // sychoronus
+// console.log(result);
+// fs.readFile("./text.txt", "utf-8",(err, data)=>{   asychoronus
+//     if(err) return err;
+//     console.log(data);
+// });
+// console.log("task-1")
+
+// const a ="kokoha ko pani dharanle khana paye";
+
+// fs.writeFile("./sample.txt",a,(err)=>{
+//     if(err) return err;
+//     console.log("added sucess")
+// })
+
+// fs.writeFileSync("./sample.txt","Harka mayor");
+
+// const os = require("os")
+// console.log(os.totalmem());
+// console.log(os.cpus().length);
+// console.log(os.hostname());
+
+// const path = require("path");
+// const newPath = "app/public/gallery/profile.png"
+// const resolve = path.resolve(newPath);
+// const resolve = path.dirname(newPath);
+// const resolve = path.basename(newPath);
+// const resolve = path.extname(newPath);
+// console.log(resolve);
+
+// const result = path.join(__dirname,"files","file.text")
+// console.log(result);
+
+// const http = require("http");
+// const fs = require("fs");
+
+// const about = fs.readFileSync("./about.html", "utf-8");
+// const app =http.createServer((req,res)=>{
+//     if (req.url === "/") return res.end("<h1> this is home page </h1>");
+//     if (req.url === "/about") return res.end(about);
+//     if (req.url === "/contact") return res.end("<h1> this is contact page </h1>");
+//     if (req.url === "/service") return res.end("<h1> this is service page </h1>");
+//     else return res.end("<h1> Page not found </h1>");
+
+
+// });
+// const PORT = 4000;
+        
+// app.listen(PORT, ()=>{
+//     console.log(`Server is running at port : http://localhost:${PORT}`)
+// });
+
+replaced by return next(new Errorhandler("email must be valid"),400)
+{
+        return res.status(400).json({
+            sucess:false,
+            message:"email must be valid!"
+        })
+
+
+//control component
+        import React, { useState } from 'react'
+import "./Home.css";
+
+
+const Home = () => {
+      const [inputValue,setInputValue]=useState("")     
+      // const handelChange = (event)=>{
+      //   setInputValue(event.target.value);
+      //   console.log(event.target.value);
+      // }
+  return (
+    <>
+    <div className='text-center'>
+    <h1 > {inputValue} </h1>
+    <input className='border' type='text'
+     placeholder='Enter Your Field' value={inputValue}
+     onChange={(e)=> setInputValue (e.target.value) }
+     />
+    </div>
+
+      
+
+    </>
+  );
+};
+
+export default Home
+
+        customer support
+        reiable online platform
+        we belive in quality product
+        shiipping product  
+        return policy
+        delivery option
+        price comperision
+        reward program
+
+
+ const [count, setCount]= useState(0);
+   const navigate = useNavigate()
+  useEffect(()=>{
+    console.log("useEffect Runs"); 
+  const intervalId =  setInterval (()=>{
+      setCount((prev) => prev + 1) ;
+    }, 1000);
+    return () =>{
+
+    clearInterval(intervalId) ;
+    console.log("unmount")
+    }
+  },[]);
+  useEffect (()=>{
+    if (count === 5){
+      navigate("/about")
+    }
+  },[count, navigate]);

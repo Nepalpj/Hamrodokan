@@ -1,0 +1,210 @@
+const Home = () => {
+  
+  return (
+    <>
+
+    <h1 className='text-red-500 text-3xl text-center uppercase'> This is my home page</h1>
+
+      <HOC cmp = {Counter} />
+      <HOCBLUE cmp = {Counter} />
+      <HOCGREEN cmp = {Counter} />
+
+    </>
+  );
+};
+
+
+const HOC = (prop)=>{
+  return<>
+  <h1 className='text-white-500 bg-red-500 mt-5 w-20 ml-5'>Red Counter<prop.cmp/></h1>
+
+  </>
+}
+const HOCBLUE = (prop)=>{
+  return<>
+  <h1 className='text-white-500 bg-blue-500 w-20 mt-5 ml-5'> <prop.cmp/>   Blue Counter</h1>
+  </>
+}
+const HOCGREEN = (prop)=>{
+  return<>
+  <h1 className='text-white-500 bg-green-500 w-20 mt-5 ml-5'><prop.cmp/> Green Counter</h1>
+  </>
+}
+
+const  Counter = ()=>{
+  const [count,setCount] = useState(0)
+  return <>
+  <h1>{count}</h1>
+  <button onClick={()=>setCount(count + 1)}>update</button>
+  </>
+}
+
+<Route exact path='/about' element={<About/>} >
+        <Route path='company' element={<Company/>}/>
+        <Route path='changes' element={<Changes/>}/>
+
+        </Route>
+<div className="text-center">
+        <Link to ="company" className="px-2 hover:text-rose-500">Company</Link>
+       <Link to ="changes" className="px-2 hover:text-rose-500" >Changes</Link>
+       <Link className="px-2 hover:text-rose-500">Make It</Link>
+      <Outlet/> // for linking inside the link nested link
+      </div>
+
+
+       useEffect(()=>{
+    console.log("useEffect runs!")
+    const url = "https://jsonplaceholder.typicode.com/posts";
+    const controller = new AbortController()
+    const {signal} = controller;
+    const fetchedData = async() => {
+      try {
+        const res = await fetch(url,{signal});
+        const data = await res.json();
+        console.log(data);
+      } catch (error) {
+        if(error.name === "AboutError"){
+          console.log("request aborted!")
+        }
+        {
+          
+        })
+      }
+    };
+    fetchedData();
+    return ()=>{
+      controller.abort()
+    }
+  },[]);
+
+   <>
+      {myData.map((item) => (
+        <h1 key={item.id}>{item.title}</h1>
+      ))}
+     {/* <div>
+      <BannerPage />
+     </div> */}
+    </>
+
+    #pure component - useMemo hooks to stop rerendering unwantedstate 
+
+    import React, { useEffect, useMemo, useState } from 'react';
+import "./Home.css";
+import BannerPage from './banner/BannerPage';
+import { useNavigate } from 'react-router-dom';
+
+
+const Home = () => {
+  const [count,setCount] = useState(5);
+  const [Data,setData] = useState(10);
+ const ans = useMemo(
+    ()=> {                                                                  /// function ma function vaneko callback
+      console.log("conponent rendered")
+      return count*5;
+    },[count]
+  );
+  
+  
+  return (
+    <>
+    <h1>Count:{count}</h1>
+    <h1>Data:{Data}</h1>
+    <h2>{ans}</h2>
+    <button onClick={()=> setCount(count +1)}>count</button>
+    <button onClick={()=> setData(Data +1)}>update</button>
+
+
+     {/* <div>
+      <BannerPage />
+     </div> */}
+    </>
+  );
+};
+
+export default Home
+
+
+##useCallback
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import "./Home.css";
+import BannerPage from './banner/BannerPage';
+import { useNavigate } from 'react-router-dom';
+import Todo from '../Todo';
+
+
+const Home = () => {
+  const[count, setCount]= useState(0);
+  const[todos, setToDos]= useState([]);
+
+ const addTodo = useCallback(()=>{
+    setToDos((prev)=> [...prev, 'New Entry']);
+  },[todos]);
+  
+  
+  return (  
+    <>
+        <div className=' text-center' >
+          <Todo  todos={todos} addTodo={addTodo} / >
+         <div className='text-center'>
+        <hr className='h-1 w-2/4' />
+        <div className='div'>
+        <h1>Count:{count}</h1>
+        <button onClick={()=> setCount(count +1)}
+        className=' bg-gray-700 text-white px-4 py-2 my-2 rounded-md'> Update Count</button>
+        </div>
+        </div>
+
+      </div>
+
+
+     {/* <div>
+      <BannerPage />
+     </div> */}
+    </>
+  );
+};
+
+export default Home
+
+import {memo} from 'react';
+
+
+const Todo = ({todos, addTodo}) => {
+    console.log("child rendered")
+  return (
+    <>
+        {todos.map((value,index)=>(
+            <p key={index}>{value+index}</p>
+        ))}
+
+        <button
+        onClick={addTodo}
+         className='bg-red-600 text-white px-4 py-2 rounded-md'>
+            AddTodo
+        </button>
+    </>
+    
+  )
+}
+
+export default memo(Todo)
+
+
+ used in home before redux
+  // const [products,setProducts]= useState([])
+useEffect(()=>{
+  //   const url="http://localhost:4000/api/v1/all/products"
+
+  //   const fetchData = async()=>{
+  //    try {
+  //    const res = await fetch(url);
+  //    const data = await res.json();
+  //   setProducts (data.products)
+
+  //    } catch (error) {
+  //     console.log(error); 
+  //    }
+  //   }
+  //   fetchData();
+
+  // },[])
