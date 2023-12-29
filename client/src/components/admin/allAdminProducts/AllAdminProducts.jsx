@@ -19,9 +19,9 @@ const AllAdminProducts = () => {
   return (
     <>
     <div className="flex">
-      <h2>View All Products</h2>
+      <h2 className="bg-purple-950 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded m-1">View All Products</h2>
        <Link to="/add/admin/products">
-       <button className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded ">Add Product</button>
+       <button className="bg-purple-950 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded m-1">Add Product</button>
        </Link>
     </div>
       <div class="font-sans relative overflow-x-auto shadow-md sm:rounded-lg">

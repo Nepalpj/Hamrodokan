@@ -22,11 +22,11 @@ const Home = () => {
   return (  
     <>
     
-     <div>
+     <div className='my-4'>
       <BannerPage />
      </div>
 
-     <div className="container bg-{#f5f5f5} mx-auto py-8">
+     <div className="container bg-{#f5f5f5} mx-auto py-8 ">
       <strong className='mx-4 text-lg'>On Sale Now</strong>
       {loading ? (<Loader />):(
         <>

@@ -64,7 +64,7 @@ export const createProduct = tryCatchAsyncError(async (req, res, next) => {
 //get all product
 
 export const allproducts = tryCatchAsyncError(async (req, res, next) => {
-  const resultPerPage= 6;
+  const resultPerPage= 15;
   const countDocument = await Product.countDocuments()
   const apiFeatures = new ApiFeatures(Product.find(),req.query).search().filter().pagination(resultPerPage);   // new for class object // .search() are method
   const products = await apiFeatures.query;
@@ -191,7 +191,7 @@ export const deleteProduct = tryCatchAsyncError(async (req, res) => {
 //get all products by admin(only)
 export const allProductsAdmin = tryCatchAsyncError(async(req,res,next)=>{
   const products = await Product.find();
-  if(!products) return next(new ErrorHandler("products not found"));
+  if(!products) return next(new Errorhandler("products not found"));
     return res.status(200).json({
       success: true,
       message: "all product fetch successfully!",

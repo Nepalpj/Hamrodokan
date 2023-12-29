@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./components/home/Home";
 import Header from "./components/header/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -23,6 +23,8 @@ import AddAdminProduct from "./components/admin/addAdminProduct/AddAdminProduct"
 import Cart from "./pages/cart/Cart";
 import SearchResults from "./components/header/search/SearchResult";
 import Search1 from "./components/header/search/Search1";
+import SearchProduct from "./components/header/search/SearchProduct";
+
 const App = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -31,6 +33,23 @@ const App = () => {
       dispatch(profile());
     }
   }, [dispatch, isAuthenticated]);
+
+  const [allProductData, setAllProductData] = useState([]);
+const [searchProduct, setSearchProduct] = useState('');
+const [loading, setLoading] = useState(false);
+  const fetchproductData = async ()=>{
+    try {
+      setLoading(true)
+      const res = await fetch(`http://localhost:4000/api/v1/all/products?keyword=${searchProduct}`);
+      const data =await res.json();
+      setAllProductData(data);
+      console.log(data)
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      console.log(error);
+    }
+  }
   return (
     <>
       <Router>
@@ -93,8 +112,8 @@ const App = () => {
             }
           />
           <Route exact path="/cart" element={<Cart />} />
-          <Route path="/search-results" component={<SearchResults />} />
-          <Route path="/search" component={<Search1 />} />
+          <Route path="/search" component={<Search1 searchProduct={searchProduct} setSearchProduct={setSearchProduct} fetchproductData={fetchproductData} />} />
+          <Route path="/movie" component={<SearchProduct allProductData={allProductData} loading={loading} />} />
 
           <Route exact path="/moreinfo" element={<Moreinfo />} />
           <Route exact path="*" element={<PageNotFound />} />
@@ -110,3 +129,30 @@ const App = () => {
 };
 
 export default App;
+
+import React from 'react'
+
+function Search1({searchProduct, setSearchProduct,fetchproductData}) {
+  return (
+    <div>
+      <div className="input flex justify-center  px-5 lg:px-0 py-5">
+        <input
+          type="text"
+          placeholder='Search here'
+          value={searchProduct}
+          onChange={(e)=> setSearchProduct(e.target.value)}
+          className=' shadow-md bg-gray-200 placeholder-gray-400 rounded-l-lg 
+          px-2 py-2 w-80 outline-none border-2 border-gray-500 text-black ' 
+        />
+        <button
+        onClick={fetchproductData}
+          className='bg-[#40407a] px-4 rounded-r-lg text-white shadow-md 
+          border-b-2 border-r-2 border-t-2 border-gray-500 '>
+          Search
+        </button>
+      </div>
+    </div>
+  )
+}
+
+export default Search1

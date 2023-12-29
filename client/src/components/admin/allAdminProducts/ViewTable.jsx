@@ -16,7 +16,7 @@ const ViewTable = ({item}) => {
               
               <td class="px-6 py-4">{item.category}</td>
               <td class="px-6 py-4">{item.price}</td>
-              <td class="px-6 py-4">{item.isInstock}</td>
+              <td class="px-6 py-4">{item.isInStock}</td>
               <td class="px-6 py-4">{item.manufacture}</td>
               <td class="px-6 py-4">{item.ratings}</td>
               <td class="px-6 py-4">
@@ -29,5 +29,6 @@ const ViewTable = ({item}) => {
               </td>
             </tr>
   )
+  
 }
 export default ViewTable
